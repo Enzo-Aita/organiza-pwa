@@ -5,14 +5,11 @@ import Principal from './Principal/Principal'
 
 function App() {
   return (
-    <div>
+    <>
       <Cabecalho/>
-      <header>Cabeçalho</header>
       <Principal/>
-      <main>Conteúdo principal</main>
       <Rodape/>
-      <footer>Rodapé</footer>
-    </div>
+    </>
     
 
   )

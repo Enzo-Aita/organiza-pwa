@@ -1,6 +1,8 @@
+import './Cabecalho.css'
+
 function Cabecalho() {
     
-  return <header>Cabeçalho</header>
+  return <header className='Cabecalho_root'>Cabeçalho</header>
 
   
 }
