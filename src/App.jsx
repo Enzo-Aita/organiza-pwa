@@ -1,8 +1,7 @@
 import './App.css'
 import Cabecalho from './componentes/Cabecalho/Cabecalho'
-import Rodape from './Rodape/Rodape'
-import Principal from './Principal/Principal'
-
+import Principal from './componentes/Principal/Principal'
+import Rodape from './componentes/Rodape/Rodape'
 function App() {
   return (
     <>
