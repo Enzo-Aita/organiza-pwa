@@ -10,7 +10,7 @@ function Cabecalho() {
       height: 24,
     }} />
     <Avatar
-     nome="Enzo Aita Naime"
+     nome="Enzo Aita Naime "
  />
     </header>
 
