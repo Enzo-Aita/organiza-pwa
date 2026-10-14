@@ -1,18 +1,11 @@
 import "./Principal.css";
-import BotaoCustomizado from "../Botao/botaoCustomizado";
 
-function Principal() {
+function Principal(props) {
   return (
     <main className="Principal_root">
-      Conteúdo principal
-      <BotaoCustomizado
-        tipo="primario"
-        aoClicar={() => alert("Salvar clicado!")}
-      >
-        Salvar
-      </BotaoCustomizado>
-      <BotaoCustomizado tipo="secundario">Cancelar</BotaoCustomizado>
-      <BotaoCustomizado>Enviar</BotaoCustomizado>
+      <h2>{props.titulo}</h2>
+
+      {props.children}
     </main>
   );
 }

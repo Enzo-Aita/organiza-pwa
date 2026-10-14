@@ -1,20 +1,20 @@
-import Avatar from '../Avatar/Avatar'
-import './Cabecalho.css'
+import Avatar from "../Avatar/Avatar";
+import "./Cabecalho.css";
 
 function Cabecalho() {
+  return (
+    <header className="Cabecalho_root">
+      <img
+        src="/favicon.svg"
+        style={{
+          width: "24px",
+          height: 24,
+        }}
+      />
 
-  return <header className='Cabecalho_root'>
-    <img src='/favicon.svg'
-    style={{
-      width: "24px",
-      height: 24,
-    }} />
-    <Avatar
-     nome="Enzo Aita Naime "
- />
+      <Avatar nome="João" />
     </header>
-
-
-
+  );
 }
-export default Cabecalho
+
+export default Cabecalho;
