@@ -14,14 +14,13 @@ function PaginaInicial() {
       >
         Lista de Produtos
       </BotaoCustomizado>
+
       <BotaoCustomizado
         tipo="secundario"
-        aoClicar={() => navigate("/lista-tarefas")}
-      
+        aoClicar={() => navigate("/fuscao-preto")}
       >
-        Lista Tarefas
+        Lista de Tarefas
       </BotaoCustomizado>
-      
     </Principal>
   );
 }

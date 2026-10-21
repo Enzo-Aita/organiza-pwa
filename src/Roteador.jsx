@@ -14,15 +14,13 @@ const roteador = createBrowserRouter([
     element: <PaginaListaProdutos />,
   },
   {
-  path: "lista-tarefas",
-  element: <PaginaListaTarefas/>,
+    path: "fuscao-preto",
+    element: <PaginaListaTarefas />,
   },
 ]);
 
 function Roteador() {
   return <RouterProvider router={roteador} />;
-
-  
 }
 
 export default Roteador;
