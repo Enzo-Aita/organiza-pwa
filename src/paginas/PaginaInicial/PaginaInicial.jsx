@@ -1,6 +1,6 @@
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
 import Principal from "../../componentes/Principal/Principal";
-
+import "./PaginaInicial.css";
 import { useNavigate } from "react-router-dom";
 
 function PaginaInicial() {
@@ -19,7 +19,16 @@ function PaginaInicial() {
         tipo="secundario"
         aoClicar={() => navigate("/fuscao-preto")}
       >
+        
         Lista de Tarefas
+      </BotaoCustomizado>
+
+      <BotaoCustomizado
+        tipo="primario"
+        aoClicar={() => navigate("/cadastro-cliente")}
+      >
+        
+        Cadastro de Cliente
       </BotaoCustomizado>
     </Principal>
   );

@@ -5,6 +5,7 @@ import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizad
 import { FaTrash } from "react-icons/fa6";
 import "./PaginaListaTarefas.css";
 import { buscarNoLocalStorage, removerDoLocalStorage, salvarNoLocalStorage } from "../../servicos/localstorage.servico";
+import { toast } from 'react-toastify';
 
 function PaginaListaTarefas() {
   const [descricaoTarefa, setDescricaoTarefa] = useState("");
@@ -17,8 +18,9 @@ function PaginaListaTarefas() {
       setTarefas(tarefasAtualizadas);
       setDescricaoTarefa("");
       salvarNoLocalStorage("tarefas", tarefasAtualizadas);
+      toast.success("Tarefa adicionada com sucesso!");
     } else {
-      alert("Tarefa obrigatória.");
+      toast.error("Tarefa obrigatória.");
     }
   };
 

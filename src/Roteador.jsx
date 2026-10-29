@@ -3,6 +3,7 @@ import PaginaListaProdutos from "./paginas/PaginaListaProdutos/PaginaListaProdut
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
+import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
 
 const roteador = createBrowserRouter([
   {
@@ -17,6 +18,10 @@ const roteador = createBrowserRouter([
     path: "fuscao-preto",
     element: <PaginaListaTarefas />,
   },
+  {
+    path: "cadastro-cliente",
+    element: <PaginaCadastroCliente />,
+  }
 ]);
 
 function Roteador() {
