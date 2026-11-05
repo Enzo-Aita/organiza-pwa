@@ -38,27 +38,25 @@ function PaginaCadastroCliente() {
   }, [params.id]);
 
   const salvar = () => {
-    if (!nome.trim() || !email.trim()) {
+    if (!formCliente.nome.trim() || !formCliente.email.trim()) {
       toast.error("Os campos nome e email são obrigatórios!");
       return;
     }
 
-    if (!validarEmail(email)) {
+    if (!validarEmail(formCliente.email)) {
       toast.error("Email inválido!");
       return;
     }
 
-    if (cpf.trim() && !validarCPF(cpf)) {
+    if (formCliente.cpf.trim() && !validarCPF(formCliente.cpf)) {
       toast.error("CPF inválido!");
       return;
     }
 
     const cliente = {
-      nome,
-      email,
-      dataNascimento,
-      telefone,
-      cpf,
+      ...formCliente,
+      id: Date.now(),
+      
     };
     console.log(cliente);
     salvarCliente(cliente);
