@@ -1,3 +1,5 @@
+// localstorage.servico.js
+
 function buscarNoLocalStorage(chave) {
     const valor = localStorage.getItem(chave);
     if (valor) {
@@ -5,12 +7,9 @@ function buscarNoLocalStorage(chave) {
     }
     return null;
 }
-function salvarNoLocalStorage(chave, valor) {
-    localStorage.setItem(chave, JSON.stringify(valor));
-}
-export { buscarNoLocalStorage, salvarNoLocalStorage };
 
-function removerDoLocalStorage(chave) {
-    localStorage.removeItem(chave);
+function salvarNoLocalStorage(chave, valor) {
+  localStorage.setItem(chave, JSON.stringify(valor));
 }
-export { removerDoLocalStorage };
+
+export { buscarNoLocalStorage, salvarNoLocalStorage };

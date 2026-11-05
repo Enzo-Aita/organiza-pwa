@@ -1,68 +1,110 @@
-import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
-import Principal from "../../componentes/Principal/Principal"
-import "./PaginaCadastroCliente.css"
-import { useState } from "react";
+/* eslint-disable react-hooks/set-state-in-effect */
+import { useEffect, useState } from "react";
 import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
+import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
+import Principal from "../../componentes/Principal/Principal";
+import {
+  formatarComMascara,
+  MASCARA_CPF,
+  MASCARA_TELEFONE,
+} from "../../utils/formatarComMascara";
+import { toast } from "react-toastify";
+import validarCPF from "../../utils/validarCPF";
+import validarEmail from "../../utils/validarEmail";
+import { buscarClientes, salvarCliente } from "../../servicos/clientes.servico";
+import { useParams } from "react-router-dom";
 
 function PaginaCadastroCliente() {
+   const [formCliente, setFormCliente] = useState({
+    id: "",
+    nome: "",
+    email: "",
+    dataNascimento: "",
+    telefone: "",
+    cpf: ""
+  });
 
-const [nome, setNome] = useState("");
-const [email, setEmail] = useState("");
-const [telefone, setTelefone] = useState("");
-const [dataNascimento, setDataNascimento] = useState("");
-const [cpf, setCpf] = useState("");
+  const params = useParams();
+  useEffect(() => {
+    if (params.id) {
+      const clientesParaEditar = buscarClientes().find(
+        (item) => item.id === +params.id,
+      );
+      
+      if (clientesParaEditar) {
+        setFormCliente(clientesParaEditar);
+      }
+    }
+  }, [params.id]);
 
-const Salvar = () => {
+  const salvar = () => {
+    if (!nome.trim() || !email.trim()) {
+      toast.error("Os campos nome e email são obrigatórios!");
+      return;
+    }
+
+    if (!validarEmail(email)) {
+      toast.error("Email inválido!");
+      return;
+    }
+
+    if (cpf.trim() && !validarCPF(cpf)) {
+      toast.error("CPF inválido!");
+      return;
+    }
+
     const cliente = {
-        nome,
-        email,
-        telefone,
-        dataNascimento,
-        cpf
+      nome,
+      email,
+      dataNascimento,
+      telefone,
+      cpf,
     };
     console.log(cliente);
-};
+    salvarCliente(cliente);
+    toast.success("Cliente salvo com sucesso!");
+  };
 
-
-
-    return ( <Principal titulo="Cadastro de Cliente" voltarPara="/" >
-
-         <CampoCustomizado 
-         label="Nome"
-         valor={nome} 
-         onchange= {(e) => setNome(e.target.value)}
-          />
-        <CampoCustomizado 
-        label="Email" 
-        valor={email} 
-        onchange= {(e) => setEmail(e.target.value)} 
-        />
-        <CampoCustomizado
-         label="Telefone"
-          valor={telefone} 
-          onchange= {(e) => setTelefone(e.target.value)}
-        />
-        <CampoCustomizado 
-        label="Data de Nascimento"
-         valor={dataNascimento} 
-         onchange= {(e) => setDataNascimento(e.target.value)}
-        />
-        <CampoCustomizado 
+  return (
+    <Principal titulo="Novo Cliente" voltarPara="/">
+      <CampoCustomizado
+        label="Nome"
+        value={formCliente.nome}
+        onChange={(e) => setFormCliente({...formCliente, nome: e.target.value})}
+        maxLength={50}
+      />
+      <CampoCustomizado
+        label="Email"
+        value={formCliente.email}
+        onChange={(e) => setFormCliente({...formCliente, email: e.target.value})}
+      />
+      <CampoCustomizado
+        label="Data Nascimento"
+        type="date"
+        value={formCliente.dataNascimento}
+        onChange={(e) => setFormCliente({...formCliente, dataNascimento: e.target.value})}
+      />
+      <CampoCustomizado
+        label="Telefone"
+        type="tel"
+        value={formCliente.telefone}
+        onChange={(e) =>
+          setFormCliente({...formCliente, telefone: formatarComMascara(e.target.value, MASCARA_TELEFONE)})
+        }
+      />
+      <CampoCustomizado
         label="CPF"
-         valor={cpf} 
-         onchange= {(e) => setCpf(e.target.value)} 
-        />
-  
-        <BotaoCustomizado tipo="primario" aoclicar={Salvar} >Salvar</BotaoCustomizado>
+        value={formCliente.cpf}
+        onChange={(e) =>
+          setFormCliente({...formCliente, cpf: formatarComMascara(e.target.value, MASCARA_CPF)})
+        }
+      />
 
-
-
-
-
-
-
+      <BotaoCustomizado tipo="primario" aoClicar={salvar}>
+        Salvar
+      </BotaoCustomizado>
     </Principal>
-    );
+  );
 }
 
 export default PaginaCadastroCliente;

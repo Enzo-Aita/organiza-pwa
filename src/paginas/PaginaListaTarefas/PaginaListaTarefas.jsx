@@ -4,12 +4,15 @@ import Principal from "../../componentes/Principal/Principal";
 import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 import { FaTrash } from "react-icons/fa6";
 import "./PaginaListaTarefas.css";
-import { buscarNoLocalStorage, removerDoLocalStorage, salvarNoLocalStorage } from "../../servicos/localstorage.servico";
-import { toast } from 'react-toastify';
+import {
+  buscarNoLocalStorage,
+  salvarNoLocalStorage,
+} from "../../servicos/localstorage.servico";
+import { toast } from "react-toastify";
 
 function PaginaListaTarefas() {
   const [descricaoTarefa, setDescricaoTarefa] = useState("");
-  const [tarefas, setTarefas] = useState(buscarNoLocalStorage("tarefas") || [] );
+  const [tarefas, setTarefas] = useState(buscarNoLocalStorage("tarefas") || []);
 
   const adicionarTarefa = () => {
     if (descricaoTarefa.trim()) {
@@ -20,7 +23,7 @@ function PaginaListaTarefas() {
       salvarNoLocalStorage("tarefas", tarefasAtualizadas);
       toast.success("Tarefa adicionada com sucesso!");
     } else {
-      toast.error("Tarefa obrigatória.");
+      toast.error("Preencha o campo Tarefa!");
     }
   };
 
@@ -29,8 +32,7 @@ function PaginaListaTarefas() {
       const tarefasAtualizadas = tarefas.filter((item) => item.id !== id);
       setTarefas(tarefasAtualizadas);
       salvarNoLocalStorage("tarefas", tarefasAtualizadas);
-      removerDoLocalStorage("tarefas");
-    
+      toast.success("Tarefa removida com sucesso!");
     }
   };
 

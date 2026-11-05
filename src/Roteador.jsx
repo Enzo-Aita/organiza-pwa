@@ -1,9 +1,10 @@
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
 import PaginaInicial from "./paginas/PaginaInicial/PaginaInicial";
 import PaginaListaProdutos from "./paginas/PaginaListaProdutos/PaginaListaProdutos";
-
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
 import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
+import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
 
 const roteador = createBrowserRouter([
   {
@@ -15,13 +16,17 @@ const roteador = createBrowserRouter([
     element: <PaginaListaProdutos />,
   },
   {
-    path: "fuscao-preto",
+    path: "lista-tarefas",
     element: <PaginaListaTarefas />,
   },
   {
-    path: "cadastro-cliente",
+    path: "cadastro-cliente/:id?",
     element: <PaginaCadastroCliente />,
-  }
+  },
+  {
+    path: "lista-clientes",
+    element: <PaginaListaClientes />,
+  },
 ]);
 
 function Roteador() {
