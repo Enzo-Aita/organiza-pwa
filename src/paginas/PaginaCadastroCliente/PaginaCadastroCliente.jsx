@@ -12,27 +12,27 @@ import { toast } from "react-toastify";
 import validarCPF from "../../utils/validarCPF";
 import validarEmail from "../../utils/validarEmail";
 import { buscarClientes, salvarCliente } from "../../servicos/clientes.servico";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function PaginaCadastroCliente() {
-   const [formCliente, setFormCliente] = useState({
+  const navigate = useNavigate();
+  const [formCliente, setFormCliente] = useState({
     id: "",
     nome: "",
     email: "",
     dataNascimento: "",
     telefone: "",
-    cpf: ""
+    cpf: "",
   });
 
   const params = useParams();
   useEffect(() => {
     if (params.id) {
-      const clientesParaEditar = buscarClientes().find(
+      const clienteParaEditar = buscarClientes().find(
         (item) => item.id === +params.id,
       );
-      
-      if (clientesParaEditar) {
-        setFormCliente(clientesParaEditar);
+      if (clienteParaEditar) {
+        setFormCliente(clienteParaEditar);
       }
     }
   }, [params.id]);
@@ -53,50 +53,91 @@ function PaginaCadastroCliente() {
       return;
     }
 
-    const cliente = {
-      ...formCliente,
-      id: Date.now(),
-      
-    };
-    console.log(cliente);
-    salvarCliente(cliente);
+    salvarCliente(formCliente);
     toast.success("Cliente salvo com sucesso!");
+    navigate("/lista-clientes");
   };
 
+  const titulo = formCliente.id ? "Editar Cliente" : "Novo Cliente";
+
   return (
-    <Principal titulo="Novo Cliente" voltarPara="/">
+    <Principal titulo={titulo} voltarPara="/">
       <CampoCustomizado
         label="Nome"
         value={formCliente.nome}
-        onChange={(e) => setFormCliente({...formCliente, nome: e.target.value})}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, nome: e.target.value })
+        }
         maxLength={50}
       />
       <CampoCustomizado
         label="Email"
         value={formCliente.email}
-        onChange={(e) => setFormCliente({...formCliente, email: e.target.value})}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, email: e.target.value })
+        }
+        maxLength={50}
       />
       <CampoCustomizado
         label="Data Nascimento"
         type="date"
         value={formCliente.dataNascimento}
-        onChange={(e) => setFormCliente({...formCliente, dataNascimento: e.target.value})}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, dataNascimento: e.target.value })
+        }
       />
       <CampoCustomizado
         label="Telefone"
         type="tel"
         value={formCliente.telefone}
         onChange={(e) =>
-          setFormCliente({...formCliente, telefone: formatarComMascara(e.target.value, MASCARA_TELEFONE)})
+          setFormCliente({
+            ...formCliente,
+            telefone: formatarComMascara(e.target.value, MASCARA_TELEFONE),
+          })
         }
       />
       <CampoCustomizado
         label="CPF"
         value={formCliente.cpf}
         onChange={(e) =>
-          setFormCliente({...formCliente, cpf: formatarComMascara(e.target.value, MASCARA_CPF)})
+          setFormCliente({
+            ...formCliente,
+            cpf: formatarComMascara(e.target.value, MASCARA_CPF),
+          })
         }
+        
       />
+      <CampoCustomizado
+       type="file"
+       accept="image/*"
+       label="Foto"
+       onChange={(e) => {
+         const imagem = e.target.files[0];
+         if (imagem) {
+           const reader = new FileReader();
+           reader.onload = (event) => {
+             setFormCliente({ ...formCliente, foto: event.target.result });
+           };
+           reader.readAsDataURL(imagem);
+         }
+       }}
+     />
+
+     {formCliente.foto && (
+       <div>
+         <img
+           src={formCliente.foto}
+           alt="Foto do Cliente"
+           style={{
+             width: "150px",
+             height: "150px",
+             objectFit: "cover",
+             borderRadius: "8px",
+           }}
+         />
+       </div>
+     )}
 
       <BotaoCustomizado tipo="primario" aoClicar={salvar}>
         Salvar

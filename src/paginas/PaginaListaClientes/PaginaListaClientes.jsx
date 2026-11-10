@@ -1,34 +1,57 @@
+import { use, useState } from "react";
 import Principal from "../../componentes/Principal/Principal";
-import { buscarClientes, salvarClientes, setClientes  } from "../../servicos/clientes.servico";
+import { buscarClientes } from "../../servicos/clientes.servico";
 import "./PaginaListaClientes.css";
-import { MdOutlineEmail } from "react-icons/md";    
+import { MdOutlineEmail } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { MdDelete } from "react-icons/md";
+import { MdAdd } from "react-icons/md";
+
+import { salvarNoLocalStorage } from "../../servicos/localstorage.servico";
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import CampoCustomizado from "../../componentes/CampoCustomizado/CampoCustomizado";
 
 function PaginaListaClientes() {
   const navigate = useNavigate();
-  const clientes = buscarClientes();
-  
- const excluirCliente = (clienteParaExcluir) => {
-  if ( confirm(`Deseja realmente excluir o cliente: ${clienteParaExcluir.nome}?`)){
+  const [clientes, setClientes] = useState(buscarClientes());
+  const [termoBusca, setTermoBusca] = useState("");
 
-    const clientesAtualizados = clientes.filter(
-  (item) => item.id !== clienteParaExcluir.id,);
-  setClientes(clientesAtualizados);
-  salvarClientes(clientesAtualizados);
-  localStorage.setItem("clientes", JSON.stringify(clientesAtualizados));
- }
- };
-const editarCliente = (clienteParaEditar) => {
-  navigate("/cadastro-cliente/" + clienteParaEditar.id);
-}
+
+  const excluirCliente = (clienteParaExcluir) => {
+    if (confirm(`Deseja  excluir o cliente: ${clienteParaExcluir.nome}?`)) {
+      const clientesAtualizados = clientes.filter(
+        (item) => item.id !== clienteParaExcluir.id,
+      );
+      setClientes(clientesAtualizados);
+      salvarNoLocalStorage("clientes", clientesAtualizados);
+      toast.success("Cliente excluído com sucesso!");
+    }
+  };
+
+  const editarCliente = (clienteParaEditar) => {
+    navigate("/cadastro-cliente/" + clienteParaEditar.id);
+  };
+
+  const clientesFiltrados = clientes.filter((item) => {
+    return item.nome.toLowerCase().includes(termoBusca.toLowerCase());
+  });
+
+
   return (
     <Principal titulo="Lista de Clientes" voltarPara="/">
-      {clientes.map((item, index) => {
+      <CampoCustomizado
+        type="search"
+        label="Buscar Cliente"
+        placeholder="Digite o nome do cliente..."
+        value={termoBusca}
+        onChange={(e) => setTermoBusca(e.target.value)}
+        
+
+      />
+      {clientesFiltrados.map((item, index) => {
         return (
           <div key={index} className="PaginaListaClientes_item">
-
             <div>
               <h3>{item.nome}</h3>
               <span className="PaginaListaClientes_item_email">
@@ -37,13 +60,21 @@ const editarCliente = (clienteParaEditar) => {
               </span>
             </div>
 
-            <div className={"PaginaListaClientes_item_acoes"}>
+            <div className="PaginaListaClientes_item_acoes">
               <MdEdit size={24} onClick={() => editarCliente(item)} />
-              <MdDelete size={24} color="red" onClick={() => excluirCliente(item)} />
+              <MdDelete
+                size={24}
+                color="red"
+                onClick={() => excluirCliente(item)}
+              />
             </div>
           </div>
         );
       })}
+
+      <div className="PaginaListaClientes_botaoAdicionar">
+        <MdAdd onClick={() => navigate("/cadastro-cliente")} />
+      </div>
     </Principal>
   );
 }
