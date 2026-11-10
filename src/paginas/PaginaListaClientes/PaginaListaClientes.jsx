@@ -1,4 +1,4 @@
-import { use, useState } from "react";
+import {useState } from "react";
 import Principal from "../../componentes/Principal/Principal";
 import { buscarClientes } from "../../servicos/clientes.servico";
 import "./PaginaListaClientes.css";
