@@ -24,6 +24,11 @@ function PaginaCadastroCliente() {
     telefone: "",
     cpf: "",
     senha: "",
+    confirmarSenha: "",
+    endereco: "",
+    cidade: "",
+    cep: "",
+    foto: "",
   });
 
   const params = useParams();
@@ -81,6 +86,15 @@ function PaginaCadastroCliente() {
         }
       />
       <CampoCustomizado
+        label="Email"
+        placeholder="Digite seu email:"
+        value={formCliente.email}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, email: e.target.value })
+        }
+        maxLength={50}
+      />
+      <CampoCustomizado
         label="Senha"
         type="password"
         placeholder="Digite sua senha:"
@@ -89,14 +103,25 @@ function PaginaCadastroCliente() {
           setFormCliente({ ...formCliente, senha: e.target.value })
         }
       />
-      <CampoCustomizado
-        label="Email"
-        placeholder="Digite seu email:"
-        value={formCliente.email}
+      < CampoCustomizado
+        label="Confirmar Senha"
+        type="password"
+        placeholder="Confirme sua senha:"
+        value={formCliente.confirmarSenha}
         onChange={(e) =>
-          setFormCliente({ ...formCliente, email: e.target.value })
+          setFormCliente({ ...formCliente, confirmarSenha: e.target.value })
         }
-        maxLength={50}
+      />
+      <CampoCustomizado
+        label="CPF"
+        placeholder="Digite seu CPF:"
+        value={formCliente.cpf}
+        onChange={(e) =>
+          setFormCliente({
+            ...formCliente,
+            cpf: formatarComMascara(e.target.value, MASCARA_CPF),
+          })
+        }
       />
       <CampoCustomizado
         label="Telefone"
@@ -111,14 +136,27 @@ function PaginaCadastroCliente() {
         }
       />
       <CampoCustomizado
-        label="CPF"
-        placeholder="Digite seu CPF:"
-        value={formCliente.cpf}
+        label="Endereço"
+        placeholder="Digite seu endereço:"
+        value={formCliente.endereco}
         onChange={(e) =>
-          setFormCliente({
-            ...formCliente,
-            cpf: formatarComMascara(e.target.value, MASCARA_CPF),
-          })
+          setFormCliente({ ...formCliente, endereco: e.target.value })
+        }
+      />
+      <CampoCustomizado
+        label="Cidade"
+        placeholder="Digite sua cidade:"
+        value={formCliente.cidade}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, cidade: e.target.value })
+        }
+      />
+      <CampoCustomizado
+        label="CEP"
+        placeholder="Digite seu CEP:"
+        value={formCliente.cep}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, cep: e.target.value })
         }
       />
       <CampoCustomizado
