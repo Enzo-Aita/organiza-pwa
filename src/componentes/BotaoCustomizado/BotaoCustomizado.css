@@ -14,8 +14,9 @@
 }
 
 .BotaoCustomizado_primario {
-  background-color: var(--cor-primaria);
-  color: var(--cor-texto-claro);
+  background-color: #61568C;
+  color: #121526;
+  border-radius: 50px;
 }
 
 .BotaoCustomizado_secundario {

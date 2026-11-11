@@ -23,6 +23,7 @@ function PaginaCadastroCliente() {
     dataNascimento: "",
     telefone: "",
     cpf: "",
+    senha: "",
   });
 
   const params = useParams();
@@ -37,7 +38,7 @@ function PaginaCadastroCliente() {
     }
   }, [params.id]);
 
-  const salvar = () => {
+  const CriarConta = () => {
     if (!formCliente.nome.trim() || !formCliente.email.trim()) {
       toast.error("Os campos nome e email são obrigatórios!");
       return;
@@ -58,23 +59,16 @@ function PaginaCadastroCliente() {
     navigate("/lista-clientes");
   };
 
-  const titulo = formCliente.id ? "Editar Cliente" : "Novo Cliente";
+  const titulo = formCliente.id ? "Editar Cliente" : "Cadastre-se";
 
   return (
     <Principal titulo={titulo} voltarPara="/">
       <CampoCustomizado
-        label="Nome"
+        label="Nome Completo"
+        placeholder="Digite seu nome completo:"
         value={formCliente.nome}
         onChange={(e) =>
           setFormCliente({ ...formCliente, nome: e.target.value })
-        }
-        maxLength={50}
-      />
-      <CampoCustomizado
-        label="Email"
-        value={formCliente.email}
-        onChange={(e) =>
-          setFormCliente({ ...formCliente, email: e.target.value })
         }
         maxLength={50}
       />
@@ -87,7 +81,26 @@ function PaginaCadastroCliente() {
         }
       />
       <CampoCustomizado
+        label="Senha"
+        type="password"
+        placeholder="Digite sua senha:"
+        value={formCliente.senha}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, senha: e.target.value })
+        }
+      />
+      <CampoCustomizado
+        label="Email"
+        placeholder="Digite seu email:"
+        value={formCliente.email}
+        onChange={(e) =>
+          setFormCliente({ ...formCliente, email: e.target.value })
+        }
+        maxLength={50}
+      />
+      <CampoCustomizado
         label="Telefone"
+        placeholder="Digite seu telefone:"
         type="tel"
         value={formCliente.telefone}
         onChange={(e) =>
@@ -99,6 +112,7 @@ function PaginaCadastroCliente() {
       />
       <CampoCustomizado
         label="CPF"
+        placeholder="Digite seu CPF:"
         value={formCliente.cpf}
         onChange={(e) =>
           setFormCliente({
@@ -106,41 +120,40 @@ function PaginaCadastroCliente() {
             cpf: formatarComMascara(e.target.value, MASCARA_CPF),
           })
         }
-        
       />
       <CampoCustomizado
-       type="file"
-       accept="image/*"
-       label="Foto"
-       onChange={(e) => {
-         const imagem = e.target.files[0];
-         if (imagem) {
-           const reader = new FileReader();
-           reader.onload = (event) => {
-             setFormCliente({ ...formCliente, foto: event.target.result });
-           };
-           reader.readAsDataURL(imagem);
-         }
-       }}
-     />
+        type="file"
+        accept="image/*"
+        label="Foto"
+        onChange={(e) => {
+          const imagem = e.target.files[0];
+          if (imagem) {
+            const reader = new FileReader();
+            reader.onload = (event) => {
+              setFormCliente({ ...formCliente, foto: event.target.result });
+            };
+            reader.readAsDataURL(imagem);
+          }
+        }}
+      />
 
-     {formCliente.foto && (
-       <div>
-         <img
-           src={formCliente.foto}
-           alt="Foto do Cliente"
-           style={{
-             width: "150px",
-             height: "150px",
-             objectFit: "cover",
-             borderRadius: "8px",
-           }}
-         />
-       </div>
-     )}
+      {formCliente.foto && (
+        <div>
+          <img
+            src={formCliente.foto}
+            alt="Foto do Cliente"
+            style={{
+              width: "150px",
+              height: "150px",
+              objectFit: "cover",
+              borderRadius: "8px",
+            }}
+          />
+        </div>
+      )}
 
-      <BotaoCustomizado tipo="primario" aoClicar={salvar}>
-        Salvar
+      <BotaoCustomizado tipo="primario" aoClicar={CriarConta}>
+        CRIAR CONTA
       </BotaoCustomizado>
     </Principal>
   );
