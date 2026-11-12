@@ -1,0 +1,15 @@
+.PaginaLogin_logo {
+  width: 140px;
+  align-self: center;
+  margin: 0 auto;
+  display: block;
+}
+
+.PaginaLogin_cadastrar {
+  text-align: right;
+  font-size: 14px;
+}
+
+.PaginaLogin_cadastrar a {
+  text-decoration: underline;
+}

@@ -5,11 +5,11 @@ import PaginaListaProdutos from "./paginas/PaginaListaProdutos/PaginaListaProdut
 import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
 import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
 import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
-
+import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
 const roteador = createBrowserRouter([
   {
     path: "",
-    element: <PaginaInicial />,
+    element: <PaginaLogin />,
   },
   {
     path: "lista-produtos",
