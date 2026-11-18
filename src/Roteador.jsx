@@ -1,46 +1,33 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import PaginaInicial from "./paginas/PaginaInicial/PaginaInicial";
-import PaginaListaProdutos from "./paginas/PaginaListaProdutos/PaginaListaProdutos";
-import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
+import PaginaMenu from "./paginas/PaginaMenu/PaginaMenu";
+import PaginaDashboard from "./paginas/PaginaDashboard/PaginaDashboard";
 import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
 import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
-// import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
-import PaginaDashboard from "./paginas/PaginaDashboard/PaginaDashboard";
-import PaginaCadastroDashboard from "./paginas/PaginaCadastroDashboard/PaginaCadastroDashboard";
+// PARTE 2 import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
+// PARTE 2 PERFIL
+
 const roteador = createBrowserRouter([
-  // {
-  //   path: "",
-  //   element: <PaginaLogin />,
-  // },
   {
     path: "",
-    element: <PaginaInicial />,
-  },
-  {
-    path: "lista-produtos",
-    element: <PaginaListaProdutos />,
-  },
-  {
-    path: "lista-tarefas",
-    element: <PaginaListaTarefas />,
-  },
-  {
-    path: "cadastro-cliente/:id?",
-    element: <PaginaCadastroCliente />,
-  },
-  {
-    path: "lista-clientes",
-    element: <PaginaListaClientes />,
-  },
-  {
-    path: "dashboard",
     element: <PaginaDashboard />,
   },
   {
-    path: "cadastro-dashboard/:id?",
-    element: <PaginaCadastroDashboard />,
-  }
+    path: "menu",
+    element: <PaginaMenu />,
+  },
+  // {
+  //   path: "cadastro-cliente/:id?",
+  //   element: <PaginaCadastroCliente />,
+  // },
+  // {
+  //   path: "lista-clientes",
+  //   element: <PaginaListaClientes />,
+  // }, 
+  // {
+  //   path: "",
+  //   element: <PaginaLogin />,
+  // }
 ]);
 
 function Roteador() {
