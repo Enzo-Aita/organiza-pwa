@@ -30,7 +30,7 @@ function PaginaLogin() {
     }
 
     salvarNoLocalStorage("usuarioLogado", clienteEncontrado.id);
-    navigate("/dashboard");
+    navigate("/lista-produtos");
   };
 
   return (

@@ -5,11 +5,17 @@ import PaginaListaProdutos from "./paginas/PaginaListaProdutos/PaginaListaProdut
 import PaginaListaTarefas from "./paginas/PaginaListaTarefas/PaginaListaTarefas";
 import PaginaCadastroCliente from "./paginas/PaginaCadastroCliente/PaginaCadastroCliente";
 import PaginaListaClientes from "./paginas/PaginaListaClientes/PaginaListaClientes";
-import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
+// import PaginaLogin from "./paginas/PaginaLogin/PaginaLogin";
+import PaginaDashboard from "./paginas/PaginaDashboard/PaginaDashboard";
+import PaginaCadastroDashboard from "./paginas/PaginaCadastroDashboard/PaginaCadastroDashboard";
 const roteador = createBrowserRouter([
+  // {
+  //   path: "",
+  //   element: <PaginaLogin />,
+  // },
   {
     path: "",
-    element: <PaginaLogin />,
+    element: <PaginaInicial />,
   },
   {
     path: "lista-produtos",
@@ -27,6 +33,14 @@ const roteador = createBrowserRouter([
     path: "lista-clientes",
     element: <PaginaListaClientes />,
   },
+  {
+    path: "dashboard",
+    element: <PaginaDashboard />,
+  },
+  {
+    path: "cadastro-dashboard/:id?",
+    element: <PaginaCadastroDashboard />,
+  }
 ]);
 
 function Roteador() {

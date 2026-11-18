@@ -35,6 +35,20 @@ function PaginaInicial() {
       >
         Lista de Clientes
       </BotaoCustomizado>
+
+      <BotaoCustomizado
+        tipo="primario"
+        aoClicar={() => navigate("/cadastro-dashboard")}
+      >
+        Cadastro de Dashboard
+      </BotaoCustomizado>
+      <BotaoCustomizado
+        tipo="primario"
+        aoClicar={() => navigate("/dashboard")}
+      >
+        Dashboard
+      </BotaoCustomizado> 
+      
     </Principal>
   );
 }
