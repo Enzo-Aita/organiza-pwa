@@ -1,0 +1,80 @@
+.PaginaDashboard_topo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PaginaDashboard_cartao {
+  background-color: #fff;
+  padding: 16px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.PaginaDashboard_resumo {
+  flex-direction: row;
+  gap: 0;
+  padding: 0;
+}
+
+.PaginaDashboard_resumo-item {
+  flex: 1;
+  padding: 12px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  border-right: 1px solid #ccc;
+}
+
+.PaginaDashboard_resumo-item:last-child {
+  border-right: none;
+}
+
+.PaginaDashboard_grafico {
+  display: flex;
+  height: 24px;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.PaginaDashboard_linha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.PaginaDashboard_bolinha {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 6px;
+}
+
+.PaginaDashboard_meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.PaginaDashboard_barra {
+  background-color: #ddd;
+  height: 10px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.PaginaDashboard_barra-preenchida {
+  background-color: var(--cor-primaria);
+  height: 100%;
+}
+
+.PaginaDashboard_meta-valor {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

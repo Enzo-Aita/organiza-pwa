@@ -173,9 +173,9 @@ function PaginaDashboard() {
         {!metas.length && <span>Nenhuma meta cadastrada.</span>}
       </div>
 
-      <BotaoCustomizado tipo="perigo" aoClicar={sair}>
+      {/* <BotaoCustomizado tipo="perigo" aoClicar={sair}>
         SAIR
-      </BotaoCustomizado>
+      </BotaoCustomizado> */}
     </Principal>
   );
 }
