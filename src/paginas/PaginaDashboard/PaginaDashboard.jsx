@@ -59,10 +59,7 @@ function PaginaDashboard() {
     });
   };
 
-  const sair = () => {
-    salvarNoLocalStorage("usuarioLogado", null);
-    navigate("/");
-  };
+
 
   return (
     <Principal titulo="Dashboard">
@@ -173,9 +170,6 @@ function PaginaDashboard() {
         {!metas.length && <span>Nenhuma meta cadastrada.</span>}
       </div>
 
-      <BotaoCustomizado tipo="perigo" aoClicar={sair}>
-        SAIR
-      </BotaoCustomizado>
     </Principal>
   );
 }
