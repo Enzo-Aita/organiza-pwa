@@ -1,4 +1,3 @@
-import Avatar from "../Avatar/Avatar";
 import "./Cabecalho.css";
 
 function Cabecalho() {
@@ -11,8 +10,6 @@ function Cabecalho() {
           height: 24,
         }}
       />
-
-      <Avatar nome="João" />
     </header>
   );
 }
