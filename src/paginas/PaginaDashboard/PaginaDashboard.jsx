@@ -9,9 +9,7 @@ import {
   MdAttachMoney,
   MdEdit,
 } from "react-icons/md";
-import BotaoCustomizado from "../../componentes/BotaoCustomizado/BotaoCustomizado";
 import Principal from "../../componentes/Principal/Principal";
-import { salvarNoLocalStorage } from "../../servicos/localstorage.servico";
 import {
   buscarLancamentos,
   CATEGORIAS,

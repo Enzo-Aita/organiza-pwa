@@ -16,26 +16,12 @@ function PaginaMenu() {
       </BotaoCustomizado>
 
       <BotaoCustomizado
-        tipo="secundario"
+        tipo="primario"
         aoClicar={() => navigate("/lista-lancamentos")}
       >
         Lista de Lançamentos
       </BotaoCustomizado>
-
-      {/* <BotaoCustomizado
-        tipo="secundario"
-        aoClicar={() => navigate("/cadastro-cliente")}
-      >
-        Cadastro de Cliente
-      </BotaoCustomizado> */}
-
-      {/* <BotaoCustomizado
-        tipo="primario"
-        aoClicar={() => navigate("/lista-clientes")}
-      >
-        Lista de Clientes
-      </BotaoCustomizado> */}
-
+      
     </Principal>
   );
 }
